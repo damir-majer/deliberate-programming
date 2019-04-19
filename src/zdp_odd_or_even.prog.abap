@@ -29,7 +29,8 @@ CLASS ltc_odd_or_even DEFINITION FOR TESTING RISK LEVEL HARMLESS DURATION SHORT.
       "it should be..
       setup,
       for_1_return_odd FOR TESTING,
-      for_2_return_even FOR TESTING.
+      for_2_return_even FOR TESTING,
+      for_1974_return_even FOR TESTING.
 ENDCLASS.
 
 CLASS ltc_odd_or_even IMPLEMENTATION.
@@ -49,6 +50,10 @@ CLASS ltc_odd_or_even IMPLEMENTATION.
 
   ENDMETHOD.
 
+  METHOD for_1974_return_even.
 
+    cl_abap_unit_assert=>assert_equals( act = lo_odd_or_even->compute( i_num = 1974 ) exp = lcl_odd_or_even=>con_even ).
+
+  ENDMETHOD.
 
 ENDCLASS.
