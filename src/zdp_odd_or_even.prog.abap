@@ -14,7 +14,11 @@ ENDCLASS.
 
 CLASS lcl_odd_or_even IMPLEMENTATION.
   METHOD compute.
-    r_result = con_odd.
+    IF i_num = 1.
+      r_result = con_odd.
+    ELSE.
+      r_result = con_even.
+    ENDIF.
   ENDMETHOD.
 ENDCLASS.
 
