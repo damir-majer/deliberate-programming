@@ -11,6 +11,7 @@ ENDCLASS.
 
 CLASS lcl_odd_or_even IMPLEMENTATION.
   METHOD compute.
+    r_result = 'ODD'.
   ENDMETHOD.
 ENDCLASS.
 
