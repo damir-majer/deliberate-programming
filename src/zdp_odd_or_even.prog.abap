@@ -1,8 +1,13 @@
 * Like to solve the ODD or EVEN Code-Kata
-REPORT ZDP_ODD_OR_EVEN.
+REPORT zdp_odd_or_even.
 
-class ltc_odd_or_even definition.
-endclass.
+CLASS ltc_odd_or_even DEFINITION FOR TESTING RISK LEVEL HARMLESS DURATION SHORT.
+  PUBLIC SECTION.
+    METHODS:
+      x FOR TESTING.
+ENDCLASS.
 
-class ltc_odd_or_even implementation.
-endclass.
+CLASS ltc_odd_or_even IMPLEMENTATION.
+  METHOD x.
+  ENDMETHOD.
+ENDCLASS.
