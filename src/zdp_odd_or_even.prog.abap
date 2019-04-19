@@ -7,14 +7,13 @@ REPORT zdp_odd_or_even.
 CLASS lcl_odd_or_even DEFINITION.
   PUBLIC SECTION.
     TYPES:
-      BEGIN OF ENUM enum_odd_or_even,
-        odd,
-        even,
+      BEGIN OF ENUM enum_odd_or_even BASE TYPE char4,
+        undefined VALUE IS INITIAL,
+        odd       VALUE 'ODD',
+        even      VALUE 'EVEN',
       END OF ENUM enum_odd_or_even.
 
-    CONSTANTS con_odd TYPE string VALUE 'ODD' ##NO_TEXT.
-    CONSTANTS con_even TYPE string VALUE 'EVEN' ##NO_TEXT.
-    METHODS compute IMPORTING i_num TYPE i RETURNING VALUE(r_result) TYPE string.
+    METHODS compute IMPORTING i_num TYPE i RETURNING VALUE(r_result) TYPE enum_odd_or_even.
   PRIVATE SECTION.
     METHODS is_odd
       IMPORTING
@@ -32,8 +31,8 @@ ENDCLASS.
 CLASS lcl_odd_or_even IMPLEMENTATION.
   METHOD compute.
 
-    r_result = COND #( WHEN is_odd( i_num )  THEN con_odd
-                       WHEN is_even( i_num ) THEN con_even ).
+    r_result = COND #( WHEN is_odd( i_num )  THEN lcl_odd_or_even=>odd
+                       WHEN is_even( i_num ) THEN lcl_odd_or_even=>even ).
 
   ENDMETHOD.
 
@@ -58,15 +57,15 @@ ENDCLASS.
 CLASS ltc_odd_or_even IMPLEMENTATION.
 
   METHOD for_1_return_odd.
-    cl_abap_unit_assert=>assert_equals( act = NEW lcl_odd_or_even( )->compute( i_num = 1 ) exp = lcl_odd_or_even=>con_odd ).
+    cl_abap_unit_assert=>assert_equals( act = NEW lcl_odd_or_even( )->compute( i_num = 1 ) exp = 'ODD' ).
   ENDMETHOD.
 
   METHOD for_2_return_even.
-    cl_abap_unit_assert=>assert_equals( act = NEW lcl_odd_or_even( )->compute( i_num = 2 ) exp = lcl_odd_or_even=>con_even ).
+    cl_abap_unit_assert=>assert_equals( act = NEW lcl_odd_or_even( )->compute( i_num = 2 ) exp = lcl_odd_or_even=>even ).
   ENDMETHOD.
 
   METHOD for_1974_return_even.
-    cl_abap_unit_assert=>assert_equals( act = NEW lcl_odd_or_even( )->compute( i_num = 1974 ) exp = lcl_odd_or_even=>con_even ).
+    cl_abap_unit_assert=>assert_equals( act = NEW lcl_odd_or_even( )->compute( i_num = 1974 ) exp = lcl_odd_or_even=>even ).
   ENDMETHOD.
 
 ENDCLASS.
