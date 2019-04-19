@@ -26,7 +26,7 @@ ENDCLASS.
 CLASS lcl_odd_or_even IMPLEMENTATION.
   METHOD compute.
 
-    r_result = COND #( WHEN is_odd( i_num ) THEN con_odd
+    r_result = COND #( WHEN is_odd( i_num )  THEN con_odd
                        WHEN is_even( i_num ) THEN con_even ).
 
   ENDMETHOD.
@@ -57,21 +57,15 @@ CLASS ltc_odd_or_even IMPLEMENTATION.
   ENDMETHOD.
 
   METHOD for_1_return_odd.
-
-    cl_abap_unit_assert=>assert_equals( act = mo_odd_or_even->compute( i_num = 1 ) exp = lcl_odd_or_even=>con_odd ).
-
+    cl_abap_unit_assert=>assert_equals( act = NEW lcl_odd_or_even( )->compute( i_num = 1 ) exp = lcl_odd_or_even=>con_odd ).
   ENDMETHOD.
 
   METHOD for_2_return_even.
-
     cl_abap_unit_assert=>assert_equals( act = mo_odd_or_even->compute( i_num = 2 ) exp = lcl_odd_or_even=>con_even ).
-
   ENDMETHOD.
 
   METHOD for_1974_return_even.
-
     cl_abap_unit_assert=>assert_equals( act = mo_odd_or_even->compute( i_num = 1974 ) exp = lcl_odd_or_even=>con_even ).
-
   ENDMETHOD.
 
 ENDCLASS.
