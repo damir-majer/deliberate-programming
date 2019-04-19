@@ -14,7 +14,7 @@ ENDCLASS.
 
 CLASS lcl_odd_or_even IMPLEMENTATION.
   METHOD compute.
-    IF i_num = 1.
+    IF i_num mod 2 <> 0.
       r_result = con_odd.
     ELSE.
       r_result = con_even.
@@ -24,10 +24,10 @@ ENDCLASS.
 
 CLASS ltc_odd_or_even DEFINITION FOR TESTING RISK LEVEL HARMLESS DURATION SHORT.
   PRIVATE SECTION.
-    DATA lo_odd_or_even TYPE REF TO lcl_odd_or_even.
+    DATA mo_odd_or_even TYPE REF TO lcl_odd_or_even.
     METHODS:
-      "it should be..
       setup,
+      "it should be..
       for_1_return_odd FOR TESTING,
       for_2_return_even FOR TESTING,
       for_1974_return_even FOR TESTING.
@@ -35,24 +35,24 @@ ENDCLASS.
 
 CLASS ltc_odd_or_even IMPLEMENTATION.
   METHOD setup.
-    lo_odd_or_even = NEW #( ).
+    mo_odd_or_even = NEW #( ).
   ENDMETHOD.
 
   METHOD for_1_return_odd.
 
-    cl_abap_unit_assert=>assert_equals( act = lo_odd_or_even->compute( i_num = 1 ) exp = lcl_odd_or_even=>con_odd ).
+    cl_abap_unit_assert=>assert_equals( act = mo_odd_or_even->compute( i_num = 1 ) exp = lcl_odd_or_even=>con_odd ).
 
   ENDMETHOD.
 
   METHOD for_2_return_even.
 
-    cl_abap_unit_assert=>assert_equals( act = lo_odd_or_even->compute( i_num = 2 ) exp = lcl_odd_or_even=>con_even ).
+    cl_abap_unit_assert=>assert_equals( act = mo_odd_or_even->compute( i_num = 2 ) exp = lcl_odd_or_even=>con_even ).
 
   ENDMETHOD.
 
   METHOD for_1974_return_even.
 
-    cl_abap_unit_assert=>assert_equals( act = lo_odd_or_even->compute( i_num = 1974 ) exp = lcl_odd_or_even=>con_even ).
+    cl_abap_unit_assert=>assert_equals( act = mo_odd_or_even->compute( i_num = 1974 ) exp = lcl_odd_or_even=>con_even ).
 
   ENDMETHOD.
 
