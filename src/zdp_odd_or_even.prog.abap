@@ -19,29 +19,32 @@ CLASS lcl_odd_or_even IMPLEMENTATION.
 ENDCLASS.
 
 CLASS ltc_odd_or_even DEFINITION FOR TESTING RISK LEVEL HARMLESS DURATION SHORT.
-  PUBLIC SECTION.
+  PRIVATE SECTION.
+    DATA lo_odd_or_even TYPE REF TO lcl_odd_or_even.
     METHODS:
       "it should be..
-      for_1_return_odd FOR TESTING.
-  PRIVATE SECTION.
-
-    METHODS for_2_return_even FOR TESTING RAISING cx_static_check.
+      setup,
+      for_1_return_odd FOR TESTING,
+      for_2_return_even FOR TESTING.
 ENDCLASS.
 
 CLASS ltc_odd_or_even IMPLEMENTATION.
-  METHOD for_1_return_odd.
-    DATA lo_odd_or_even TYPE REF TO lcl_odd_or_even.
+  METHOD setup.
     lo_odd_or_even = NEW #( ).
+  ENDMETHOD.
+
+  METHOD for_1_return_odd.
 
     cl_abap_unit_assert=>assert_equals( act = lo_odd_or_even->compute( i_num = 1 ) exp = lcl_odd_or_even=>con_odd ).
 
   ENDMETHOD.
 
   METHOD for_2_return_even.
-    DATA lo_odd_or_even TYPE REF TO lcl_odd_or_even.
-    lo_odd_or_even = NEW #( ).
 
     cl_abap_unit_assert=>assert_equals( act = lo_odd_or_even->compute( i_num = 2 ) exp = lcl_odd_or_even=>con_even ).
 
   ENDMETHOD.
+
+
+
 ENDCLASS.
