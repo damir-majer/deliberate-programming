@@ -1,4 +1,7 @@
 * Like to solve the ODD or EVEN Code-Kata
+* Testcases 1 = 'ODD'
+* TC 2 = 'EVEN'
+* 1974 = 'EVEN'
 REPORT zdp_odd_or_even.
 
 CLASS lcl_odd_or_even DEFINITION.
