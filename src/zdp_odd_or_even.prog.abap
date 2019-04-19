@@ -9,16 +9,34 @@ CLASS lcl_odd_or_even DEFINITION.
     CONSTANTS con_odd TYPE string VALUE 'ODD' ##NO_TEXT.
     CONSTANTS con_even TYPE string VALUE 'EVEN' ##NO_TEXT.
     METHODS compute IMPORTING i_num TYPE i RETURNING VALUE(r_result) TYPE string.
+  PRIVATE SECTION.
+    METHODS is_odd
+      IMPORTING
+        i_num           TYPE i
+      RETURNING
+        VALUE(r_result) TYPE abap_bool.
+    METHODS is_even
+      IMPORTING
+        i_num           TYPE i
+      RETURNING
+        VALUE(r_result) TYPE abap_bool.
 
 ENDCLASS.
 
 CLASS lcl_odd_or_even IMPLEMENTATION.
   METHOD compute.
-    IF i_num mod 2 <> 0.
-      r_result = con_odd.
-    ELSE.
-      r_result = con_even.
-    ENDIF.
+
+    r_result = COND #( WHEN is_odd( i_num ) THEN con_odd
+                       WHEN is_even( i_num ) THEN con_even ).
+
+  ENDMETHOD.
+
+  METHOD is_even.
+    r_result = boolc( i_num MOD 2 = 0 ).
+  ENDMETHOD.
+
+  METHOD is_odd.
+    r_result = boolc( i_num MOD 2 <> 0 ).
   ENDMETHOD.
 ENDCLASS.
 
