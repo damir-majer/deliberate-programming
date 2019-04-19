@@ -1,7 +1,3 @@
-* Like to solve the ODD or EVEN Code-Kata
-* Testcases 1 = 'ODD'
-* TC 2 = 'EVEN'
-* 1974 = 'EVEN'
 REPORT zdp_odd_or_even.
 
 CLASS lcl_odd_or_even DEFINITION.
@@ -13,6 +9,9 @@ CLASS lcl_odd_or_even DEFINITION.
         even VALUE 'EVEN',
       END OF ENUM enum_odd_or_even.
 
+    "! Compute Method for verifying if a number is ODD or EVEN
+    "! @parameter i_num | Number that should be checked
+    "! @parameter r_result | Result of TYPE enum_odd_or_even
     METHODS compute IMPORTING i_num TYPE i RETURNING VALUE(r_result) TYPE enum_odd_or_even.
   PRIVATE SECTION.
     METHODS is_odd
