@@ -8,9 +8,9 @@ CLASS lcl_odd_or_even DEFINITION.
   PUBLIC SECTION.
     TYPES:
       BEGIN OF ENUM enum_odd_or_even BASE TYPE char4,
-        undefined VALUE IS INITIAL,
-        odd       VALUE 'ODD',
-        even      VALUE 'EVEN',
+        init VALUE IS INITIAL,
+        odd  VALUE 'ODD',
+        even VALUE 'EVEN',
       END OF ENUM enum_odd_or_even.
 
     METHODS compute IMPORTING i_num TYPE i RETURNING VALUE(r_result) TYPE enum_odd_or_even.
