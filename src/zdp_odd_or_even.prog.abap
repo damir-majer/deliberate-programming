@@ -42,9 +42,7 @@ ENDCLASS.
 
 CLASS ltc_odd_or_even DEFINITION FOR TESTING RISK LEVEL HARMLESS DURATION SHORT.
   PRIVATE SECTION.
-    DATA mo_odd_or_even TYPE REF TO lcl_odd_or_even.
     METHODS:
-      setup,
       "it should be..
       for_1_return_odd FOR TESTING,
       for_2_return_even FOR TESTING,
@@ -52,20 +50,17 @@ CLASS ltc_odd_or_even DEFINITION FOR TESTING RISK LEVEL HARMLESS DURATION SHORT.
 ENDCLASS.
 
 CLASS ltc_odd_or_even IMPLEMENTATION.
-  METHOD setup.
-    mo_odd_or_even = NEW #( ).
-  ENDMETHOD.
 
   METHOD for_1_return_odd.
     cl_abap_unit_assert=>assert_equals( act = NEW lcl_odd_or_even( )->compute( i_num = 1 ) exp = lcl_odd_or_even=>con_odd ).
   ENDMETHOD.
 
   METHOD for_2_return_even.
-    cl_abap_unit_assert=>assert_equals( act = mo_odd_or_even->compute( i_num = 2 ) exp = lcl_odd_or_even=>con_even ).
+    cl_abap_unit_assert=>assert_equals( act = NEW lcl_odd_or_even( )->compute( i_num = 2 ) exp = lcl_odd_or_even=>con_even ).
   ENDMETHOD.
 
   METHOD for_1974_return_even.
-    cl_abap_unit_assert=>assert_equals( act = mo_odd_or_even->compute( i_num = 1974 ) exp = lcl_odd_or_even=>con_even ).
+    cl_abap_unit_assert=>assert_equals( act = NEW lcl_odd_or_even( )->compute( i_num = 1974 ) exp = lcl_odd_or_even=>con_even ).
   ENDMETHOD.
 
 ENDCLASS.
