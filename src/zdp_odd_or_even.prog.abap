@@ -6,6 +6,12 @@ REPORT zdp_odd_or_even.
 
 CLASS lcl_odd_or_even DEFINITION.
   PUBLIC SECTION.
+    TYPES:
+      BEGIN OF ENUM enum_odd_or_even,
+        odd,
+        even,
+      END OF ENUM enum_odd_or_even.
+
     CONSTANTS con_odd TYPE string VALUE 'ODD' ##NO_TEXT.
     CONSTANTS con_even TYPE string VALUE 'EVEN' ##NO_TEXT.
     METHODS compute IMPORTING i_num TYPE i RETURNING VALUE(r_result) TYPE string.
