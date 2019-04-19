@@ -57,7 +57,7 @@ ENDCLASS.
 CLASS ltc_odd_or_even IMPLEMENTATION.
 
   METHOD for_1_return_odd.
-    cl_abap_unit_assert=>assert_equals( act = NEW lcl_odd_or_even( )->compute( i_num = 1 ) exp = 'ODD' ).
+    cl_abap_unit_assert=>assert_equals( act = NEW lcl_odd_or_even( )->compute( i_num = 1 ) exp = lcl_odd_or_even=>odd ).
   ENDMETHOD.
 
   METHOD for_2_return_even.
